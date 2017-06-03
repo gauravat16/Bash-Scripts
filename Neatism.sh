@@ -40,7 +40,7 @@ mv $(ls | grep -e ".7Z" -e ".7z" -e ".CBR" -e ".cbr" -e ".DEB" -e ".deb" -e ".GZ
 4)
 echo "Sorting Applications"
 
-mv $(ls | grep -e ".ACCDB" -e ".accdb" -e ".DB" -e ".db" -e ".DBF" -e ".dbf" -e ".MDB" -e ".mdb" -e ".PDB" -e ".pdb" -e ".SQL" -e ".sql") $folder &>/dev/null
+mv $(ls | grep  -e ".APK" -e ".apk" -e ".APP" -e ".app" -e ".BAT" -e ".bat" -e ".CGI" -e ".cgi" -e ".COM" -e ".com" -e ".EXE" -e ".exe" -e ".GADGET" -e ".gadget" -e ".JAR" -e ".jar" -e ".WSF" -e ".wsf") $folder &>/dev/null
 
 ;;
 
