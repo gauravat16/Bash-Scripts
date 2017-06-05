@@ -16,5 +16,5 @@
       | |_  | |\  |  __/ (_| | |_| \__ \ | | | | |
       |_(_) |_| \_|\___|\__,_|\__|_|___/_| |_| |_|
 
-        A Script that sorts all types of folders in neat folders.
+        A Script that sorts all types of files in neat folders.
 
