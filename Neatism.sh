@@ -1,6 +1,6 @@
 #!/bin/bash	
 echo "Neatism - For nerds with OCD"
-figlet Neatism - For nerds with OCD
+figlet Neatism - For nerds with OCD &>/dev/null
 
 #Adds Underscore for every space in file name
 
