@@ -10,7 +10,7 @@
       
       
 
-    **1. Neatism**
+   **1. Neatism**
         A Script that sorts all types of files in neat folders.
         
    **2. LogX**
