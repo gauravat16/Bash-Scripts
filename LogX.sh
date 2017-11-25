@@ -112,13 +112,13 @@ write_logs(){
 	fi	
 	local log_name=$1
 	local log_line=$2
-	local latest_file=$(ls -t | head -n1 | grep $log_name)
+	local latest_file=$(ls -t | grep $log_name|head -n1 )
 	if [[ -z "$latest_file" ]]
 		then
 		echo $log_line >> "$log_name"_"$time_stamp".log
 
 		else
-			local size=$(echo "$(wc -c $latest_file)" | cut -d " " -f1)
+			local size=$(echo "$(wc -c $latest_file)" | cut -d " " -f2)
 			if [[ "$size" -lt 1048576 ]]
 			then
 			echo $log_line >> $latest_file
