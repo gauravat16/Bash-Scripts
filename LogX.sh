@@ -82,8 +82,55 @@ On_IWhite='\033[0;107m'   # White
 
 
 #######################################################
+DEBUG=""
+LOG_LOCATION="$1"
+options="$@"	
 
-option=$1
+
+set_options(){
+for option in $options;
+do
+	case $option in
+		"-debug" )
+			DEBUG="-debug"
+			;;
+
+	esac
+done
+
+}
+
+write_logs(){
+	local current_dir=$PWD
+	local time_stamp=$(date +"%Y-%m-%d_%H-%M-%S")
+
+	if [[ ! -d "$LOG_LOCATION" ]]
+		then
+			mkdir $LOG_LOCATION
+		else
+			cd $LOG_LOCATION
+	fi	
+	local log_name=$1
+	local log_line=$2
+	local latest_file=$(ls -t | head -n1 | grep $log_name)
+	if [[ -z "$latest_file" ]]
+		then
+		echo $log_line >> "$log_name"_"$time_stamp".log
+
+		else
+			local size=$(echo "$(wc -c $latest_file)" | cut -d " " -f1)
+			if [[ "$size" -lt 1048576 ]]
+			then
+			echo $log_line >> $latest_file
+			else
+				echo $log_line >> "$log_name"_"$time_stamp".log
+
+			fi
+		
+	fi
+	cd $current_dir
+
+}
 
 
 log_basic(){
@@ -91,13 +138,14 @@ local tag=$1
 local log=$2
 local colour_bg=$3
 local caller_fn=$4
-
+local caller_file=$(echo "$(echo "$caller_fn"| cut -d " " -f2)" | cut -d "." -f1)
 
 local time_stamp=$(date +"%Y-%m-%d::%H:%M:%S")
 
-if [[ $option == "-debug" ]]
+if [[ $DEBUG == "-debug" ]]
 then
 printf "$colour_bg%s$Color_Off\n" "$time_stamp:$caller_fn:$tag:$log"
+write_logs "$caller_file" "$time_stamp:$caller_fn:$tag:$log" 
 fi
 }
 
@@ -125,7 +173,10 @@ local caller_fn=$(caller)
 log_basic "$tag" "$log" "$On_IRed" "$caller_fn"
 }
 
-
+init(){
+	set_options
+}
+init
 
 # test(){
 # log_info "TESTFN" "This is sweet!" 
