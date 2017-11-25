@@ -138,14 +138,16 @@ local tag=$1
 local log=$2
 local colour_bg=$3
 local caller_fn=$4
+local log_type=$5
 local caller_file=$(echo "$(echo "$caller_fn"| cut -d " " -f2)" | cut -d "." -f1)
+local caller_line_number=$(echo "$caller_fn"| cut -d " " -f1)
 
 local time_stamp=$(date +"%Y-%m-%d::%H:%M:%S")
-
+local log_line="$log_type:$time_stamp:$caller_file:$caller_line_number:$tag:$log"
 if [[ $DEBUG == "-debug" ]]
 then
-printf "$colour_bg%s$Color_Off\n" "$time_stamp:$caller_fn:$tag:$log"
-write_logs "$caller_file" "$time_stamp:$caller_fn:$tag:$log" 
+printf "$colour_bg%s$Color_Off\n" "$log_line"
+write_logs "$caller_file" "$log_line"
 fi
 }
 
@@ -155,7 +157,7 @@ local tag=$1
 local log=$2
 local caller_fn=$(caller)
 
-log_basic "$tag" "$log" "$On_IGreen" "$caller_fn"
+log_basic "$tag" "$log" "$On_IGreen" "$caller_fn" "INFO"
 }
 
 log_warn(){
@@ -163,14 +165,14 @@ local tag=$1
 local log=$2
 local caller_fn=$(caller)
 
-log_basic "$tag" "$log" "$On_IBlue" "$caller_fn"
+log_basic "$tag" "$log" "$On_IBlue" "$caller_fn" "WARN"
 }
 
 log_error(){
 local tag=$1
 local log=$2
 local caller_fn=$(caller)
-log_basic "$tag" "$log" "$On_IRed" "$caller_fn"
+log_basic "$tag" "$log" "$On_IRed" "$caller_fn" "ERROR"
 }
 
 init(){
