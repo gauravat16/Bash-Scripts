@@ -83,8 +83,13 @@ On_IWhite='\033[0;107m'   # White
 
 #######################################################
 DEBUG=""
-LOG_LOCATION="$1"
+LOG_LOCATION=""
+LOG_NAME=""
+NO_LOG=""
+NO_COLOR=""
 options="$@"	
+LOG_PROPERTIES=""
+TAG="LOGX-INTERNAL-LOG"
 
 
 set_options(){
@@ -95,9 +100,42 @@ do
 			DEBUG="-debug"
 			;;
 
+		"-nolog" )
+			NO_LOG="-nolog"
+			;;
+
+		"-nocolor" )
+			NO_COLOR="-nocolor"
+			;;	
+
 	esac
 done
 
+}
+
+load_vars(){
+	LOG_PROPERTIES="$1"
+	if [[ ! -f "$LOG_PROPERTIES" ]]; then
+		NO_LOG="-nolog"
+		log_error "LOGX" "$LOG_PROPERTIES is missing."
+		
+	fi
+
+	while read -r line; do
+		if [[ ! -z "$line" ]]; then
+			local key=$(echo "$line" | cut -d "=" -f1)			
+			local value=$(echo "$line" | cut -d "=" -f2)
+
+			case "$key" in
+							"LogLocation" )
+								LOG_LOCATION=$value
+								;;
+						esac			
+
+		fi
+	done < "$LOG_PROPERTIES"
+
+	log_info $TAG $LOG_LOCATION
 }
 
 write_logs(){
@@ -146,8 +184,15 @@ local time_stamp=$(date +"%Y-%m-%d::%H:%M:%S")
 local log_line="$log_type:$time_stamp:$caller_file:$caller_line_number:$tag:$log"
 if [[ $DEBUG == "-debug" ]]
 then
-printf "$colour_bg%s$Color_Off\n" "$log_line"
-write_logs "$caller_file" "$log_line"
+if [[ -z "$NO_COLOR" ]]; then
+	printf "$colour_bg%s$Color_Off\n" "$log_line"
+else
+		printf "%s\n" "$log_line"
+fi
+
+if [[  -z "$NO_LOG" ]]; then
+	write_logs "$caller_file" "$log_line"
+fi
 fi
 }
 
@@ -175,15 +220,11 @@ local caller_fn=$(caller)
 log_basic "$tag" "$log" "$On_IRed" "$caller_fn" "ERROR"
 }
 
-init(){
+log_init(){
+	
 	set_options
+	load_vars $1
+	
 }
-init
 
-# test(){
-# log_info "TESTFN" "This is sweet!" 
-# log_error "TESTFN" "This is sweet!" 
-# log_warn "TESTFN" "This is sweet!" 
-# }
 
-# test
