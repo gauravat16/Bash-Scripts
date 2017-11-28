@@ -89,6 +89,7 @@ NO_LOG=""
 NO_COLOR=""
 options="$@"	
 LOG_PROPERTIES=""
+MAX_LOG_FILE_SIZE=""
 TAG="LOGX-INTERNAL-LOG"
 
 
@@ -118,6 +119,7 @@ load_vars(){
 	if [[ ! -f "$LOG_PROPERTIES" ]]; then
 		NO_LOG="-nolog"
 		log_error "LOGX" "$LOG_PROPERTIES is missing."
+		exit
 		
 	fi
 
@@ -128,14 +130,15 @@ load_vars(){
 
 			case "$key" in
 							"LogLocation" )
-								LOG_LOCATION=$value
+								LOG_LOCATION="$value"
 								;;
+							"MaxLogFileSize" )
+								MAX_LOG_FILE_SIZE="$value"
 						esac			
 
 		fi
 	done < "$LOG_PROPERTIES"
 
-	log_info $TAG $LOG_LOCATION
 }
 
 write_logs(){
@@ -156,8 +159,8 @@ write_logs(){
 		echo $log_line >> "$log_name"_"$time_stamp".log
 
 		else
-			local size=$(echo "$(wc -c $latest_file)" | cut -d " " -f2)
-			if [[ "$size" -lt 1048576 ]]
+			local size=$(echo "$(wc -c $latest_file)" | cut -d " " -f3)
+			if [[ "$size" -lt "$MAX_LOG_FILE_SIZE" ]]
 			then
 			echo $log_line >> $latest_file
 			else
