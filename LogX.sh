@@ -90,7 +90,9 @@ NO_COLOR=""
 options="$@"	
 LOG_PROPERTIES=""
 MAX_LOG_FILE_SIZE=""
+COMPRESS_LOGS=""
 TAG="LOGX-INTERNAL-LOG"
+
 
 
 set_options(){
@@ -134,11 +136,28 @@ load_vars(){
 								;;
 							"MaxLogFileSize" )
 								MAX_LOG_FILE_SIZE="$value"
+								;;
+							"CompressLogs" )
+								COMPRESS_LOGS="$value"
+								;;
+
+							"ScriptName" )
+								LOG_NAME="$value"
+								;;
+
 						esac			
 
 		fi
 	done < "$LOG_PROPERTIES"
 
+}
+
+compress_logs(){
+	if [[ ! -z "$COMPRESS_LOGS" ]] && [[ "$COMPRESS_LOGS" == "true" ]]; then
+		log="$1"
+		gzip "$log"
+	fi
+	
 }
 
 write_logs(){
@@ -153,19 +172,19 @@ write_logs(){
 	fi	
 	local log_name=$1
 	local log_line=$2
-	local latest_file=$(ls -t | grep $log_name|head -n1 )
+	local latest_file=$(ls -t | grep "$log_name"|head -n1 )
 	if [[ -z "$latest_file" ]]
 		then
 		echo $log_line >> "$log_name"_"$time_stamp".log
 
 		else
-			local size=$(echo "$(wc -c $latest_file)" | cut -d " " -f3)
+			local size=$(wc -c < "$latest_file" | sed 's/ //g' )
 			if [[ "$size" -lt "$MAX_LOG_FILE_SIZE" ]]
 			then
 			echo $log_line >> $latest_file
 			else
+				compress_logs "$(pwd)/$latest_file"
 				echo $log_line >> "$log_name"_"$time_stamp".log
-
 			fi
 		
 	fi
@@ -192,10 +211,10 @@ if [[ -z "$NO_COLOR" ]]; then
 else
 		printf "%s\n" "$log_line"
 fi
+fi
 
 if [[  -z "$NO_LOG" ]]; then
-	write_logs "$caller_file" "$log_line"
-fi
+	write_logs "$LOG_NAME" "$log_line"
 fi
 }
 
