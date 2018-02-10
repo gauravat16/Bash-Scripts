@@ -8,7 +8,7 @@
       
       
       
-  **1.[Neatism](https://github.com/gauravat16/Bash-Scripts/blob/master/Neatism.md)**
+  **1. [Neatism](https://github.com/gauravat16/Bash-Scripts/blob/master/Neatism.md)**
 
         A Script that sorts all types of files & folders in neat folders.
  
