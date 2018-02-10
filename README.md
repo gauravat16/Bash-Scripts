@@ -9,9 +9,9 @@
       
       
   **1. Neatism**
-        A Script that sorts all types of files in neat folders.
+        A Script that sorts all types of files & folders in neat folders.
         
-   **2. LogX**
+  **2. LogX**
         A Script that allows you to added logging in your bash script.
 
 
