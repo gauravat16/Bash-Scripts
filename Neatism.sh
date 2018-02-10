@@ -4,14 +4,13 @@ echo "Neatism - For nerds with OCD"
 
 for f in *\ *; do mv "$f" "${f// /_}"; done &>/dev/null
 
-folder_array=("Images" "Documents" "Archives" "Applications" "Torrents" "Fonts" "Videos" "Music" "DB_Files" "Game_Files" "Web_Files" "Folders" )
 
 
 sort_and_move(){
 caseVal=$1
 folder=$2
 
-mkdir -p $folder &>/dev/null
+mkdir $folder &>/dev/null
 case $caseVal in
 	1 )
 echo "Sorting Images"
@@ -92,28 +91,6 @@ mv $(ls | grep -e ".ASP" -e ".asp" -e ".ASPX" -e ".aspx" -e ".CER" -e ".cer" -e 
 
 ;;
 
-12)
-echo "Sorting Folders"
-
-for folder_name in $(ls -d */ | cut -d "/" -f1);
-do
-	is_special=0
-	for i in ${folder_array[@]}; do
-		if [[ $folder_name == $i ]]; then
-			is_special=1
-			break
-
-		fi
-	done
-
-	if [[ is_special -eq 0 ]]; then
-		mv $folder_name Folders/
-	fi
-
-done
-
-;;
-
 
 
 esac
@@ -130,7 +107,6 @@ sort_and_move '8' 'Music/'
 sort_and_move '9' 'DB_Files/'
 sort_and_move '10' 'Game_Files/'
 sort_and_move '11' 'Web_Files/'
-sort_and_move '12' 'Folders/'
 
 
 
