@@ -1,4 +1,11 @@
-# Neatism
+        _   __           __  _              
+       / | / /__  ____ _/ /_(_)________ ___ 
+      /  |/ / _ \/ __ `/ __/ / ___/ __ `__ \
+     / /|  /  __/ /_/ / /_/ (__  ) / / / / /
+    /_/ |_/\___/\__,_/\__/_/____/_/ /_/ /_/ 
+
+## Example
+![Example](https://github.com/gauravat16/Bash-Scripts/blob/master/images/Neatism_ex.png)
 
 ### File type supported
 * Images
