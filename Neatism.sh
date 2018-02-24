@@ -1,11 +1,22 @@
 #!/bin/bash	
-echo "Neatism - For nerds with OCD"
+cat << "EOF"
+
+    _   __           __  _              
+   / | / /__  ____ _/ /_(_)________ ___ 
+  /  |/ / _ \/ __ `/ __/ / ___/ __ `__ \
+ / /|  /  __/ /_/ / /_/ (__  ) / / / / /
+/_/ |_/\___/\__,_/\__/_/____/_/ /_/ /_/ 
+                                        
+EOF
+
 #Adds Underscore for every space in file name
 
 for f in *\ *; do mv "$f" "${f// /_}"; done &>/dev/null
 
 folder_array=("Images" "Documents" "Archives" "Applications" "Torrents" "Fonts" "Videos" "Music" "DB_Files" "Game_Files" "Web_Files" "Folders" )
 
+#Define paths for neatism targets
+paths_array=("/Users/gaurav/Downloads" "/Users/gaurav/Scripts")
 
 sort_and_move(){
 caseVal=$1
@@ -15,16 +26,16 @@ mkdir -p $folder &>/dev/null
 case $caseVal in
 	1 )
 echo "Sorting Images"
-mv $(ls | grep  -e ".BMP" -e ".bmp" -e ".DDS" -e ".dds" -e ".GIF" -e ".gif" -e ".JPG" -e ".jpg" -e ".PNG" -e ".png" -e ".PSD" -e ".psd" -e ".PSPIMAGE" -e ".pspimage" -e ".TGA" -e ".tga" -e ".THM" -e ".thm" -e ".TIF" -e ".tif" -e ".TIFF" -e ".tiff" -e ".YUV" -e ".yuv"  -e ".AI" -e ".ai" -e ".EPS" -e ".eps" -e ".PS" -e ".ps" -e ".SVG" -e ".svg") $folder &>/dev/null
+mv $(ls | grep -i -e ".bmp" -e ".dds" -e ".gif"  -e ".jpg"  -e ".png" -e ".psd"  -e ".pspimage"  -e ".tga"  -e ".thm" -e ".tif"  -e ".tiff"  -e ".yuv"  -e ".ai"  -e ".eps"  -e ".ps" -e ".svg") $folder &>/dev/null
 
 ;;
 
 2)
 echo "Sorting Documents"
 
-mv $(ls | grep -e ".CSV" -e ".csv" -e ".DAT" -e ".dat" -e ".GED" -e ".ged" -e ".KEY" -e ".key" -e ".KEYCHAIN" -e ".keychain" -e ".PPS" -e ".pps" -e ".PPT" -e ".ppt" -e ".PPTX" -e ".pptx" -e ".SDF" -e ".sdf" -e ".TAR" -e ".tar" -e ".TAX2016" -e ".tax2016" -e ".VCF" -e ".vcf" -e ".XML" -e ".xml") $folder &>/dev/null
-mv $(ls | grep -e ".DOC" -e ".doc" -e ".DOCX" -e ".docx" -e ".LOG" -e ".log" -e ".MSG" -e ".msg" -e ".ODT" -e ".odt" -e ".PAGES" -e ".pages" -e ".RTF" -e ".rtf" -e ".TEX" -e ".tex" -e ".TXT" -e ".txt" -e ".WPD" -e ".wpd" -e ".WPS" -e ".wps") $folder &>/dev/null
-mv $(ls | grep -e ".pdf" -e ".doc" -e ".xls" -e ".ppt" -e ".pptx" -e ".ppt"  -e ".INDD" -e ".indd" -e ".PCT" -e ".pct" -e ".PDF" -e ".pdf"  -e ".XLR" -e ".xlr" -e ".XLS" -e ".xls" -e ".XLSX" -e ".xlsx") $folder &>/dev/null
+mv $(ls | grep -i -e  ".csv"  -e  ".dat"  -e  ".ged"  -e  ".key"  -e  ".keychain"  -e  ".pps"  -e  ".ppt"  -e  ".pptx"  -e  ".sdf"  -e  ".tar"  -e  ".tax2016"  -e  ".vcf"  -e  ".xml"  ) $folder &>/dev/null
+mv $(ls | grep -i -e  ".doc"  -e  ".docx"  -e  ".log"  -e  ".msg"  -e  ".odt"  -e  ".pages"  -e  ".rtf"  -e  ".tex"  -e  ".txt"  -e  ".wpd"  -e  ".wps"  ) $folder &>/dev/null
+mv $(ls | grep -i -e  ".pdf"  -e  ".doc"  -e  ".xls"  -e  ".ppt"  -e  ".pptx" -e  ".indd"  -e  ".pct"  -e  ".xlr"  -e  ".xlsx"  ) $folder &>/dev/null
 
 
 ;;
@@ -32,41 +43,41 @@ mv $(ls | grep -e ".pdf" -e ".doc" -e ".xls" -e ".ppt" -e ".pptx" -e ".ppt"  -e 
 3)
 echo "Sorting Archives"
 
-mv $(ls | grep -e ".7Z" -e ".7z" -e ".CBR" -e ".cbr" -e ".DEB" -e ".deb" -e ".GZ" -e ".gz" -e ".PKG" -e ".pkg" -e ".RAR" -e ".rar" -e ".RPM" -e ".rpm" -e ".SITX" -e ".sitx" -e ".TAR.GZ" -e ".tar.gz" -e ".ZIP" -e ".zip" -e ".ZIPX" -e ".zipx" -e ".BIN" -e ".bin" -e ".CUE" -e ".cue" -e ".DMG" -e ".dmg" -e ".ISO" -e ".iso" -e ".MDF" -e ".mdf" -e ".TOAST" -e ".toast" -e ".VCD" -e ".vcd") $folder &>/dev/null
+mv $(ls | grep -i -e  ".7z"  -e  ".cbr"  -e  ".deb"  -e  ".gz"  -e  ".pkg"  -e  ".rar"  -e  ".rpm"  -e  ".sitx"  -e  ".tar.gz"  -e  ".zip"  -e  ".zipx"  -e  ".bin"  -e  ".cue"  -e  ".dmg"  -e  ".iso"  -e  ".mdf"  -e  ".toast"  -e  ".vcd"  ) $folder &>/dev/null
 
 ;;
 
 4)
 echo "Sorting Applications"
 
-mv $(ls | grep  -e ".APK" -e ".apk" -e ".APP" -e ".app" -e ".BAT" -e ".bat" -e ".CGI" -e ".cgi" -e ".COM" -e ".com" -e ".EXE" -e ".exe" -e ".GADGET" -e ".gadget" -e ".JAR" -e ".jar" -e ".WSF" -e ".wsf") $folder &>/dev/null
+mv $(ls | grep  -i -e  ".apk"  -e  ".app"  -e  ".bat"  -e  ".cgi"  -e  ".com"  -e  ".exe"  -e  ".gadget"  -e  ".jar"  -e  ".wsf"  ) $folder &>/dev/null
 
 ;;
 
 5)
 echo "Sorting Torrents"
 
-mv $(ls | grep -e ".torrent") $folder &>/dev/null
+mv $(ls | grep -i -e ".torrent") $folder &>/dev/null
 
 ;;
 
 6)
 echo "Sorting Fonts"
 
-mv $(ls | grep -e ".FNT" -e ".fnt" -e ".FON" -e ".fon" -e ".OTF" -e ".otf" -e ".TTF" -e ".ttf") $folder &>/dev/null
+mv $(ls | grep -i -e  ".fnt"  -e  ".fon"  -e  ".otf"  -e  ".ttf"  ) $folder &>/dev/null
 
 ;;
 
 7)
 echo "Sorting Videos"
 
-mv $(ls | grep -e ".3G2" -e ".3g2" -e ".3GP" -e ".3gp" -e ".ASF" -e ".asf" -e ".AVI" -e ".avi" -e ".FLV" -e ".flv" -e ".M4V" -e ".m4v" -e ".MOV" -e ".mov" -e ".MP4" -e ".mp4" -e ".MPG" -e ".mpg" -e ".RM" -e ".rm" -e ".SRT" -e ".srt" -e ".SWF" -e ".swf" -e ".VOB" -e ".vob" -e ".WMV" -e ".wmv") $folder &>/dev/null
-mv $(ls | grep -e ".3DM" -e ".3dm" -e ".3DS" -e ".3ds" -e ".MAX" -e ".max" -e ".OBJ" -e ".obj") $folder &>/dev/null
+mv $(ls | grep -i -e  ".3g2"  -e  ".3gp"  -e  ".asf"  -e  ".avi"  -e  ".flv"  -e  ".m4v"  -e  ".mov"  -e  ".mp4"  -e  ".mpg"  -e  ".rm"  -e  ".srt"  -e  ".swf"  -e  ".vob"  -e  ".wmv"  ) $folder &>/dev/null
+mv $(ls | grep -i -e  ".3dm"  -e  ".3ds"  -e  ".max"  -e  ".obj"  ) $folder &>/dev/null
 ;;
 
 8)
 echo "Sorting Music"
-mv $(ls | grep -e ".AIF" -e ".aif" -e ".IFF" -e ".iff" -e ".M3U" -e ".m3u" -e ".M4A" -e ".m4a" -e ".MID" -e ".mid" -e ".MP3" -e ".mp3" -e ".MPA" -e ".mpa" -e ".WAV" -e ".wav" -e ".WMA" -e ".wma") $folder &>/dev/null
+mv $(ls | grep -i -e  ".aif"  -e  ".iff"  -e  ".m3u"  -e  ".m4a"  -e  ".mid"  -e  ".mp3"  -e  ".mpa"  -e  ".wav"  -e  ".wma"  ) $folder &>/dev/null
 
 
 ;;
@@ -74,21 +85,21 @@ mv $(ls | grep -e ".AIF" -e ".aif" -e ".IFF" -e ".iff" -e ".M3U" -e ".m3u" -e ".
 9)
 echo "Sorting Database Files"
 
-mv $(ls | grep  -e ".ACCDB" -e ".accdb" -e ".DB" -e ".db" -e ".DBF" -e ".dbf" -e ".MDB" -e ".mdb" -e ".PDB" -e ".pdb" -e ".SQL" -e ".sql") $folder &>/dev/null
+mv $(ls | grep  -i -e  ".accdb"  -e  ".db"  -e  ".dbf"  -e  ".mdb"  -e  ".pdb"  -e  ".sql" ) $folder &>/dev/null
 
 ;;
 
 10)
 echo "Sorting Game Files"
 
-mv $(ls | grep -e ".DEM" -e ".dem" -e ".GAM" -e ".gam" -e ".NES" -e ".nes" -e ".ROM" -e ".rom" -e ".SAV" -e ".sav") $folder &>/dev/null
+mv $(ls | grep -i -e  ".dem"  -e  ".gam"  -e  ".nes"  -e  ".rom"  -e  ".sav") $folder &>/dev/null
 
 ;;
 
 11)
 echo "Sorting Web Files"
 
-mv $(ls | grep -e ".ASP" -e ".asp" -e ".ASPX" -e ".aspx" -e ".CER" -e ".cer" -e ".CFM" -e ".cfm" -e ".CSR" -e ".csr" -e ".CSS" -e ".css" -e ".HTM" -e ".htm" -e ".HTML" -e ".html" -e ".JS" -e ".js" -e ".JSP" -e ".jsp" -e ".PHP" -e ".php" -e ".RSS" -e ".rss" -e ".XHTML" -e ".xhtml") $folder &>/dev/null
+mv $(ls | grep -i -e  ".asp"  -e  ".aspx"  -e  ".cer"  -e  ".cfm"  -e  ".csr"  -e  ".css"  -e  ".htm"  -e  ".html"  -e  ".js"  -e  ".jsp"  -e  ".php"  -e  ".rss"  -e  ".xhtml" ) $folder &>/dev/null
 
 ;;
 
@@ -119,21 +130,28 @@ done
 esac
 }
 
-sort_and_move '1' 'Images/'
-sort_and_move '2' 'Documents/'
-sort_and_move '3' 'Archives/'
-sort_and_move '4' 'Applications/'
-sort_and_move '5' 'Torrents/'
-sort_and_move '6' 'Fonts/'
-sort_and_move '7' 'Videos/'
-sort_and_move '8' 'Music/'
-sort_and_move '9' 'DB_Files/'
-sort_and_move '10' 'Game_Files/'
-sort_and_move '11' 'Web_Files/'
-sort_and_move '12' 'Folders/'
+looper(){
+	for path in ${paths_array[@]}; do
+		cd $path
+		echo "\nSorting path $path\n"
+		sort_and_move '1' 'Images/'
+		sort_and_move '2' 'Documents/'
+		sort_and_move '3' 'Archives/'
+		sort_and_move '4' 'Applications/'
+		sort_and_move '5' 'Torrents/'
+		sort_and_move '6' 'Fonts/'
+		sort_and_move '7' 'Videos/'
+		sort_and_move '8' 'Music/'
+		sort_and_move '9' 'DB_Files/'
+		sort_and_move '10' 'Game_Files/'
+		sort_and_move '11' 'Web_Files/'
+		sort_and_move '12' 'Folders/'
 
+	done
+}
 
-
+#Start cleaning up
+looper
 
 
 
