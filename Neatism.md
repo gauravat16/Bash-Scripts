@@ -21,11 +21,13 @@
 * Web Files
 
 ### Usage
+* Edit Neatism.sh and add folders you want to sort in - 
+  * paths_array=("path_1" "path_2")
 
 * Terminal
-  * Copy Neatism.sh in the desired folder and run.
+  * run Neatism.sh.
 * Cron Job
   * Copy Neatism.sh in the desired folder.
-  * ex - 18 23 * * * cd /Users/gaurav/Downloads && ./Neatism.sh >/dev/null 2>&1
+  * ex - 18 23 * * * cd path_to_script && ./Neatism.sh >/dev/null 2>&1
 
   
