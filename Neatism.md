@@ -27,7 +27,6 @@
 * Terminal
   * run Neatism.sh.
 * Cron Job
-  * Copy Neatism.sh in the desired folder.
   * ex - 18 23 * * * cd path_to_script && ./Neatism.sh >/dev/null 2>&1
 
   
