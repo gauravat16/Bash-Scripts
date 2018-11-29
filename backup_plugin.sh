@@ -2,8 +2,7 @@
 
 #Initialize all global variables.
 function initVars(){
- 	drive=$(pwd | cut -d'/' -f2)
-	plugin_name="FSYNC_PLUGIN"
+	plugin_name="NAME_PLUGIN"
 }
 
 #Check if user wants to execute this plugin Or any other permission your plugin requires.
@@ -14,7 +13,6 @@ function checkForPermissions(){
 
 #Perform the plugin's task.
 function performAction(){
-	sh $(pwd)/Fsync.sh
 }
 
 #Start the script. Please refrain from changing this code.
