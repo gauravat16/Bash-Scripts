@@ -35,9 +35,6 @@
 	options="$@"	
 
 
-	#To add a new option add entry in both case statements
-	#We look through thr options as we can have multiple options
-
 	set_options(){
 		prev_option=""
 
@@ -46,37 +43,17 @@
 		case $prev_option in
 			"-t" )
 			REFRESH_TIME_SECONDS=$option	
-			prev_option=""	
 				;;
 			"-d" )
 				directory_array+=("$option")
-				prev_option=""	
 				;;
 			"-g" )
 
 				git_directory_array+=("$option")			
-				prev_option=""	
 				;;
-
-
 		esac
 
-		case $option in
-			"-t" )
-				prev_option="-t"
-
-				;;
-
-
-			"-d" )
-				prev_option="-d"
-				;;
-
-			"-g" )
-				prev_option="-g"
-				;;
-
-		esac
+		 prev_option="$option"
 	done
 
 	}
