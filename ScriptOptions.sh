@@ -8,9 +8,12 @@ options="$@"
 
 set_options(){
     prev_option=""
+
     
     for option in $options;
     do
+        echo $option
+
         case $prev_option in
             "-t" )
                 OPTION_1=$option
