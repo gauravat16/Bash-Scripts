@@ -12,7 +12,7 @@
 
         A Script that sorts all types of files & folders in neat folders.
 
- **2. [Fsync] (https://github.com/gauravat16/Bash-Scripts/blob/master/Fsync.md)**
+ **2. [Fsync](https://github.com/gauravat16/Bash-Scripts/blob/master/Fsync.md)**
 
  		A Script that leverages git to backup just the delta(s) of your work to a safe loaction.
 
@@ -25,7 +25,7 @@
  		A small example that allows you to process any order of options provided to your script.
 
 
- **2. SetUpMyEnv**
+ **5. SetUpMyEnv**
 
  		A parallelized Script that uses plugins to set up the environment.  
 
