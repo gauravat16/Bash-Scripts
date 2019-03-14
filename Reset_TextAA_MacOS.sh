@@ -36,6 +36,9 @@ function switchAA(){
             defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
             defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
             osascript -e 'tell app "System Events" to log out'
+    else
+            post_notification "Text is already crispy."
+                
     fi
 }
 
