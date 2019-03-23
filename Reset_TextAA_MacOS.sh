@@ -25,7 +25,7 @@ function switchAA(){
     then
             post_notification "Currently on Retina display. Disabling Subpixel AA and logging off"
             defaults write -g CGFontRenderingFontSmoothingDisabled -bool YES
-            defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+            defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
             osascript -e 'tell app "System Events" to log out'
     fi
 
@@ -34,11 +34,8 @@ function switchAA(){
     then
             post_notification "Currently on External display. Enabling Subpixel AA and logging off"
             defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-            defaults -currentHost write -globalDomain AppleFontSmoothing -int 0
+            defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
             osascript -e 'tell app "System Events" to log out'
-    else
-            post_notification "Text is already crispy."
-                
     fi
 }
 
