@@ -8,11 +8,11 @@
       
       
       
-  **1. [Neatism](https://github.com/gauravat16/Bash-Scripts/blob/master/Neatism.md)**
+  **1. [Neatism](https://github.com/gauravat16/Bash-Scripts/blob/master/tools/Neatism.md)**
 
 A Script that sorts all types of files & folders in neat folders.
 
- **2. [Fsync](https://github.com/gauravat16/Bash-Scripts/blob/master/Fsync.md)**
+ **2. [Fsync](https://github.com/gauravat16/Bash-Scripts/blob/master/fsync/Fsync.md)**
 
 A Script that leverages git to backup just the delta(s) of your work to a safe loaction.
 
