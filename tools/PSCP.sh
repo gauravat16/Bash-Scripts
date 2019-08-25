@@ -26,7 +26,7 @@ function pscp() {
     else
          echo -e 'Usage:\n
         Provide -f to copy from provided system to local
-                pscp -f payment /home/fabtechies/myfile.info ~/Documents/\n
+                pscp -f payment /home/brucewayne/myfile.info ~/Documents/\n
         Provide -r to copy from local to provided system
                 pscp -t ~/Documents/myfile.info uat /tmp'
     fi
