@@ -38,17 +38,31 @@ function installVsCode(){
 function installSTS(){
     wget -v https://download.springsource.com/release/STS4/4.2.2.RELEASE/dist/e4.11/spring-tool-suite-4-4.2.2.RELEASE-e4.11.0-macosx.cocoa.x86_64.dmg -P $SOFTWARES
     sudo hdiutil attach ~/Dev/spring-tool-suite-4-4.2.2.RELEASE-e4.11.0-macosx.cocoa.x86_64.dmg
+    open '/Volumes/Spring Tool Suite 4'
 }
 
 #install docker
 function installDocker(){
     wget -v https://download.docker.com/mac/stable/Docker.dmg -P $SOFTWARES
     sudo hdiutil attach ~/Dev/Docker.dmg
+    open '/Volumes/Docker'
 }
 
 #install postman
 function installPostman(){
     brew cask install postman
+}
+
+function installMongoCompass(){
+    brew cask install mongodb-compass
+}
+
+function installMySqlWorkbench(){
+    brew cask install mysqlworkbench
+}
+
+function installIdeaCE(){
+    brew cask install intellij-idea-ce
 }
 
 function init(){
