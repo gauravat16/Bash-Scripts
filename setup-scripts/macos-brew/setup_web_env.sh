@@ -30,7 +30,7 @@ function installChrome(){
 }
 
 #install vscode
-function installChrome(){
+function installVsCode(){
     brew cask install visual-studio-code
 }
 
