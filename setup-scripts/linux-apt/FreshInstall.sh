@@ -78,10 +78,10 @@ sudo apt-get update
     
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+    sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
        sudo apt update
    sudo apt-get install docker-ce docker-ce-cli containerd.io
 }
@@ -98,7 +98,7 @@ function init(){
     
     
     #Get Updated
-    #sudo apt-get update && sudo apt-get upgrade
+    sudo apt-get update && sudo apt-get upgrade
 
     #Set up Folder
     mkdir -p $SOFTWARES
