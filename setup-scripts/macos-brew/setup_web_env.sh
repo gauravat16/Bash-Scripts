@@ -10,6 +10,7 @@
 #install command line tools
 function setupCommandLineTools(){
     xcode-select --install
+    sudo xcode-select -switch /Library/Developer/CommandLineTools
 }
 
 #install brew
